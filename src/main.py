@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, filedialog, messagebox
-import os
+import os, sys
 
 class Configuracoes:
 	lista_de_disciplinas = []
@@ -34,19 +34,19 @@ def cria_tela():
 	
 	print("criando tela...")
 	tela = tk.Tk()
-	tela.geometry("250x100")
+	tela.geometry("185x80")
 
 	disciplina_var = tk.StringVar()
 			
-	disciplina_label = tk.Label(tela, text = 'Disciplina', font=('calibre', 10, 'bold'))
+	disciplina_label = tk.Label(tela, text = 'Digite o nome da disciplina', font=('calibre', 10, 'bold'))
 			
 	disciplina_entry = tk.Entry(tela,textvariable = disciplina_var,font=('calibre',10,'normal'))
 
 	enviar_btn =tk.Button(tela,text = 'Enviar', command = submit)
 
 	disciplina_label.grid(row=0,column=0)
-	disciplina_entry.grid(row=0,column=1)
-	enviar_btn.grid(row=1,column=1)
+	disciplina_entry.grid(row=1,column=0)
+	enviar_btn.grid(row=2,column=0)
 
 	tela.mainloop()
 
@@ -67,7 +67,10 @@ def cria_pastas():
 		except:
 			print("Ocorreu um erro...")
 			messagebox.showerror(title="Erro",message="Erro durante a criação dos diretórios.")
-			pass
+			sys.exit()
+
+	messagebox.showinfo(title="Fim", message="As pastas para as disciplinas solicitadas foram criadas")
+	sys.exit()
 
 if __name__ == "__main__":
 	config = Configuracoes()
